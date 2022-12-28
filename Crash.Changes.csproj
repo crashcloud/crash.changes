@@ -7,13 +7,14 @@
 	<Nullable>enable</Nullable>
 	<UserSecretsId>68224f92-991e-4ba7-b0bb-cd77b799356f</UserSecretsId>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<Title>SpeckLib</Title>
+	<Title>CrashChange</Title>
 	<Company>Crash</Company>
-	<PackageProjectUrl>https://github.com/crashcloud/specklib</PackageProjectUrl>
+	<PackageProjectUrl>https://github.com/crashcloud/CrashChange</PackageProjectUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<RepositoryUrl>https://github.com/crashcloud/specklib</RepositoryUrl>
-	<PackageTags>speck, specks, specklib, crash</PackageTags>
+	<RepositoryUrl>https://github.com/crashcloud/CrashChange</RepositoryUrl>
+	<PackageTags>speck, specks, CrashChange, crash</PackageTags>
 	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	<RootNamespace>Crash</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
