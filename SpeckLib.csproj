@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+	<LangVersion>latest</LangVersion>
+	<Nullable>enable</Nullable>
+	<UserSecretsId>68224f92-991e-4ba7-b0bb-cd77b799356f</UserSecretsId>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Title>SpeckLib</Title>
+	<Company>Crash</Company>
+	<PackageProjectUrl>https://github.com/crashcloud/specklib</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/crashcloud/specklib</RepositoryUrl>
+	<PackageTags>speck, specks, specklib, crash</PackageTags>
+	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
