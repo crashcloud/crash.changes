@@ -5,18 +5,15 @@
 
     public Guid Id { get; set; }
 
-    public string Owner { get; set; }
-
-    public bool Temporary { get; set; }
-
-    public string? LockedBy { get; set; }
+    public string? Owner { get; set; }
 
     public string? Payload { get; set; }
 
+    public int Action { get; set; } = 0;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    // For Deserialize Only
     public Change() { }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 
     public Change(Guid id, string owner, string? payload)
     {
@@ -32,8 +29,11 @@
         Id = speck.Id;
         Owner = speck.Owner;
         Payload = speck.Payload;
-        LockedBy = speck.Owner;
-        Temporary = true;
+
+        // May need to add Temporary (It was added previously)
+        ChangeAction action = (ChangeAction)speck.Action;
+        action ^= ChangeAction.Temporary;
+        speck.Action = (int)action;
     }
 
     public static Change CreateEmpty()
