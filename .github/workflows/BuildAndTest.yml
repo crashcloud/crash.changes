@@ -15,7 +15,7 @@
           uses: NuGet/setup-nuget@v1
         
         - name: Restore Packages
-          run: nuget restore Crash.Changes.sln
+          run: nuget restore
     
         - uses: actions/setup-dotnet@v3
           with:
@@ -23,17 +23,9 @@
               6.0
     
         - name: Build Crash
-          run: dotnet build Crash.Changes.sln --configuration Release
+          run: dotnet build --configuration Release
     
         - name: Test
           run: |
-            dotnet test Crash.Changes.sln
-    
-        - name: Test Report
-          uses: dorny/test-reporter@v1
-          if: success() || failure()
-          with:
-            name: Tests
-            path: tests/bin/**/**/TestResults/*.trx
-            reporter: dotnet-trx
+            dotnet test
     

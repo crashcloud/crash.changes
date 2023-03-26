@@ -8,7 +8,7 @@
 		/// <summary>The time of creation</summary>
 		public DateTime Stamp { get; set; }
 
-		/// <summary>The Id of the Change</summary>
+		/// <summary>The Id		of the Change</summary>
 		public Guid Id { get; set; }
 
 		/// <summary>The originator of the Change</summary>
