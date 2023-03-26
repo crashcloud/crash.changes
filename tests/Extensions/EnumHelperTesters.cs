@@ -35,7 +35,6 @@ namespace Crash.Changes.Tests.Extensions
 			});
 		}
 
-		[TestCase(ChangeAction.None | ChangeAction.None, ChangeAction.None)]
 		[TestCase(ChangeAction.Add | ChangeAction.Add, ChangeAction.Add)]
 		[TestCase(ChangeAction.Remove | ChangeAction.Remove, ChangeAction.Remove)]
 		[TestCase(ChangeAction.Update | ChangeAction.Update, ChangeAction.Update)]

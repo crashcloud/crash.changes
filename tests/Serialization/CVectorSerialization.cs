@@ -48,14 +48,16 @@ namespace Crash.Changes.Tests.Serialization
 			}
 		}
 
-		private void TestCVectorSerializtion(CVector CVector)
+		private void TestCVectorSerializtion(CVector cVector)
 		{
-			var json = JsonSerializer.Serialize(CVector, TestOptions);
-			var CVectorOut = JsonSerializer.Deserialize<CVector>(json, TestOptions);
-			Assert.That(CVector.X, Is.EqualTo(CVectorOut.X));
-			Assert.That(CVector.Y, Is.EqualTo(CVectorOut.Y));
-			Assert.That(CVector.Z, Is.EqualTo(CVectorOut.Z));
+			var json = JsonSerializer.Serialize(cVector, TestOptions);
+			var cVectorOut = JsonSerializer.Deserialize<CVector>(json, TestOptions);
+			Assert.Multiple(() =>
+			{
+				Assert.That(cVector.X, Is.EqualTo(cVectorOut.X));
+				Assert.That(cVector.Y, Is.EqualTo(cVectorOut.Y));
+				Assert.That(cVector.Z, Is.EqualTo(cVectorOut.Z));
+			});
 		}
-
 	}
 }
