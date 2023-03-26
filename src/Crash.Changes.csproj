@@ -1,27 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
-	<LangVersion>latest</LangVersion>
-	<Nullable>enable</Nullable>
-	<UserSecretsId>68224f92-991e-4ba7-b0bb-cd77b799356f</UserSecretsId>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<Title>CrashChange</Title>
-	<Company>Crash</Company>
-	<PackageProjectUrl>https://github.com/crashcloud/CrashChange</PackageProjectUrl>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<RepositoryUrl>https://github.com/crashcloud/CrashChange</RepositoryUrl>
-	<PackageTags>speck, specks, CrashChange, crash</PackageTags>
-	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-	<RootNamespace>Crash</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Platforms>AnyCPU;x64</Platforms>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Crash.Changes</Title>
+		<Authors>Callum Sykes</Authors>
+		<Company>Crash, Changes</Company>
+		<Product>Crash</Product>
+		<Copyright>Crash</Copyright>
+		<PackageProjectUrl>https://github.com/crashcloud/changess</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/crashcloud/changes</RepositoryUrl>
+		<PackageTags>Crash, Changes</PackageTags>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>6.0-recommended</AnalysisLevel>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<IncludeSymbols>True</IncludeSymbols>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AssemblyVersion>1.2</AssemblyVersion>
+		<FileVersion>$(AssemblyVersion)</FileVersion>
+		<ErrorReport>send</ErrorReport>
+		<Version>$(AssemblyVersion)</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>none</DebugType>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <DebugType>none</DebugType>
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" ExcludeAssets="Analyzers" />
+		<PackageReference Include="System.Text.Json" Version="7.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Using Include="Crash.Changes.Serialization" />
+	  <Using Include="System.Collections" />
+	  <Using Include="System.Text.Json.Serialization.JsonConverterAttribute">
+	    <Alias>JsonConverterAttribute</Alias>
+	  </Using>
+	</ItemGroup>
 
 </Project>

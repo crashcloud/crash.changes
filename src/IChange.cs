@@ -1,13 +1,25 @@
-﻿public interface IChange
+﻿namespace Crash.Changes
 {
+	public interface IChange
+	{
 
-    public DateTime Stamp { get; }
+		/// <summary>The time of creation</summary>
+		public DateTime Stamp { get; }
 
-    public Guid Id { get; }
+		/// <summary>The Id of the Change</summary>
+		public Guid Id { get; }
 
-    public string? Owner { get; }
+		/// <summary>The originator of the Change</summary>
+		public string? Owner { get; }
 
-    public string? Payload { get; }
+		/// <summary>Any related payload data</summary>
+		public string? Payload { get; }
 
-    public int Action { get; set; }
+		/// <summary>The Payload Type</summary>
+		public string Type { get; }
+
+		/// <summary>The type of Change. See ChangeAction.</summary>
+		public ChangeAction Action { get; set; }
+
+	}
 }
