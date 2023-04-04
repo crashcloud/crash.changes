@@ -32,7 +32,7 @@
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (obj is not CPoint cPoint) return false;
 			return this == cPoint;
@@ -72,5 +72,4 @@
 			=> new(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
 
 	}
-
 }
