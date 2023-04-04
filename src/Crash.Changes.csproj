@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<Platforms>AnyCPU;x64</Platforms>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
@@ -12,7 +12,7 @@
 		<Product>Crash</Product>
 		<Copyright>Crash</Copyright>
 		<PackageProjectUrl>https://github.com/crashcloud/changess</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/crashcloud/changes</RepositoryUrl>
+		<RepositoryUrl>https://github.com/crashcloud/crash.changes</RepositoryUrl>
 		<PackageTags>Crash, Changes</PackageTags>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
@@ -24,6 +24,9 @@
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<ErrorReport>send</ErrorReport>
 		<Version>$(AssemblyVersion)</Version>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description> Provides a reliable, reusable class for communicating Rhino Changes </Description>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -63,6 +66,12 @@
 	  <Using Include="System.Text.Json.Serialization.JsonConverterAttribute">
 	    <Alias>JsonConverterAttribute</Alias>
 	  </Using>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
