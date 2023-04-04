@@ -18,7 +18,7 @@
 		public string? Payload { get; set; }
 
 		/// <summary>The Payload Type</summary>
-		public string Type { get; }
+		public string Type { get; set; }
 
 		/// <summary>The type of Change. See ChangeAction.</summary>
 		public ChangeAction Action { get; set; }
