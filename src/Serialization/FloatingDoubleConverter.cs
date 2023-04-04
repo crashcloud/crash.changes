@@ -29,7 +29,7 @@ namespace Crash.Changes.Serialization
 		/// <summary>Converts the number from string</summary>
 		internal static double FromString(string? number, IFormatProvider provider)
 		{
-			if (string.IsNullOrEmpty(number))
+			if (null == number)
 				return 0;
 
 			if (number.Equals(NaN, StringComparison.Ordinal))
@@ -46,6 +46,5 @@ namespace Crash.Changes.Serialization
 
 			return 0;
 		}
-
 	}
 }

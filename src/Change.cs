@@ -63,16 +63,14 @@
 		public override int GetHashCode() => HashCode.Combine(Id, Owner, Action, Payload);
 
 		/// <summary>Tests for equality of two changes</summary>
-		public bool Equals(Change other)
+		public bool Equals(Change? other)
 			=> other?.GetHashCode() == GetHashCode();
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (obj is not Change change) return false;
 			return Equals(change);
 		}
-
 	}
-
 }
