@@ -22,7 +22,7 @@
             dotnet-version: |
               6.0
     
-        - name: Build Crash
+        - name: Build Crash.Changes
           run: dotnet build --configuration Release
     
         - name: Test
