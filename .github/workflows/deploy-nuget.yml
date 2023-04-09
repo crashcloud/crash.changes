@@ -41,5 +41,5 @@ jobs:
         - name: Push Nuget to Nuget
           id: publish-nuget-github
           run: |
-            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org" --skip-duplicate
+            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json" --skip-duplicate
         
