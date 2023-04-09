@@ -36,10 +36,10 @@ jobs:
         - name: Push Nuget to GitHub
           id: publish-nuget-nuget
           run: |
-            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" --skip-duplicate
         
-        - name: Push Nuget to GitHub
+        - name: Push Nuget to Nuget
           id: publish-nuget-github
           run: |
-            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source 'https://api.nuget.org'
+            dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org" --skip-duplicate
         
