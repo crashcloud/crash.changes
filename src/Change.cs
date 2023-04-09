@@ -39,13 +39,14 @@
 		}
 
 		/// <summary>Creates a transmittable Change from an IChange</summary>
-		public Change(IChange speck)
+		public Change(IChange change)
 		{
-			Stamp = speck.Stamp;
-			Id = speck.Id;
-			Owner = speck.Owner;
-			Payload = speck.Payload;
-			Action = speck.Action;
+			Stamp = change.Stamp;
+			Id = change.Id;
+			Owner = change.Owner;
+			Payload = change.Payload;
+			Action = change.Action;
+			Type = change.Type;
 		}
 
 		public static Change CreateEmpty(Guid id = default)
