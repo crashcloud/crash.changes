@@ -12,8 +12,7 @@ namespace Crash.Changes.Tests.Extensions
 		[TestCase(ChangeAction.Remove | ChangeAction.Remove, ChangeAction.Remove)]
 		[TestCase(ChangeAction.Update | ChangeAction.Update, ChangeAction.Update)]
 		[TestCase(ChangeAction.Transform | ChangeAction.Transform, ChangeAction.Transform)]
-		[TestCase(ChangeAction.Lock | ChangeAction.Lock, ChangeAction.Lock)]
-		[TestCase(ChangeAction.Unlock | ChangeAction.Unlock, ChangeAction.Unlock)]
+		[TestCase(ChangeAction.Locked | ChangeAction.Locked, ChangeAction.Locked)]
 		[TestCase(ChangeAction.Temporary | ChangeAction.Temporary, ChangeAction.Temporary)]
 		[TestCase(ChangeAction.Camera | ChangeAction.Camera, ChangeAction.Camera)]
 		public void AddChangeAction_Test(ChangeAction original, ChangeAction adder)
@@ -39,8 +38,7 @@ namespace Crash.Changes.Tests.Extensions
 		[TestCase(ChangeAction.Remove | ChangeAction.Remove, ChangeAction.Remove)]
 		[TestCase(ChangeAction.Update | ChangeAction.Update, ChangeAction.Update)]
 		[TestCase(ChangeAction.Transform | ChangeAction.Transform, ChangeAction.Transform)]
-		[TestCase(ChangeAction.Lock | ChangeAction.Lock, ChangeAction.Lock)]
-		[TestCase(ChangeAction.Unlock | ChangeAction.Unlock, ChangeAction.Unlock)]
+		[TestCase(ChangeAction.Locked | ChangeAction.Locked, ChangeAction.Locked)]
 		[TestCase(ChangeAction.Temporary | ChangeAction.Temporary, ChangeAction.Temporary)]
 		[TestCase(ChangeAction.Camera | ChangeAction.Camera, ChangeAction.Camera)]
 		public void RemoveChangeAction_Test(ChangeAction original, ChangeAction remover)
@@ -62,5 +60,4 @@ namespace Crash.Changes.Tests.Extensions
 			});
 		}
 	}
-
 }

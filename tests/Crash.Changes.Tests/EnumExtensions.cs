@@ -16,8 +16,7 @@
 		Remove = ChangeAction.Remove,
 		Update = ChangeAction.Update,
 		Transform = ChangeAction.Transform,
-		Lock = ChangeAction.Lock,
-		Unlock = ChangeAction.Unlock,
+		Lock = ChangeAction.Locked,
 		Temporary = ChangeAction.Temporary,
 	}
 

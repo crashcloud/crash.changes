@@ -25,16 +25,13 @@
 		Transform = 1 << 4,
 
 		/// <summary>A Locking Change</summary>
-		Lock = 1 << 5,
-		/// <summary>An Unlocking Change</summary>
-		Unlock = 1 << 6,
+		Locked = 1 << 5,
 
 		/// <summary>A Temporary Change</summary>
-		Temporary = 1 << 7, //?
+		Temporary = 1 << 6,
 
 		/// <summary>A Camera Change</summary>
-		Camera = 1 << 8,
+		Camera = 1 << 7,
 
 	}
-
 }
