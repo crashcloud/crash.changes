@@ -65,11 +65,11 @@
 
 		/// <summary>Subtracts p2 from p1</summary>
 		public static CVector operator -(CVector v1, CVector v2)
-			=> new(v2.X - v1.X, v2.Y - v1.Y, v2.Z - v1.Z);
+			=> new(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
 
 		/// <summary>Adds p2 and p1</summary>
 		public static CVector operator +(CVector v1, CVector v2)
-			=> new(v2.X - v1.X, v2.Y - v1.Y, v2.Z - v1.Z);
+			=> new(v2.X + v1.X, v2.Y + v1.Y, v2.Z + v1.Z);
 
 	}
 }

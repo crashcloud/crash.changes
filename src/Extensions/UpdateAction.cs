@@ -31,7 +31,5 @@
 
 			change.Action = changeAction;
 		}
-
 	}
-
 }

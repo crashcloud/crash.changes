@@ -1,6 +1,6 @@
 ﻿using Crash.Geometry;
 
-namespace Crash.Changes.Tests
+namespace Crash.Changes.Tests.Geometry
 {
 	[TestFixture]
 	public sealed class GeometryTests

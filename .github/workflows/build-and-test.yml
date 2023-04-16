@@ -1,31 +1,30 @@
 ---
-    name: BuildAndTest
-    on:
-      pull_request:
-        paths-ignore:
-          - '*.md'
+name: BuildAndTest
+on:
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
     
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v3
-    
-        - name: Setup NuGet
-          uses: NuGet/setup-nuget@v1
-        
-        - name: Restore Packages
-          run: nuget restore
-    
-        - uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: |
-              6.0
-    
-        - name: Build Crash.Changes
-          run: dotnet build --configuration Release
-    
-        - name: Test
-          run: |
-            dotnet test
-    
+    - name: Restore Packages
+      run: nuget restore
+
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: |
+          6.0
+
+    - name: Build Crash.Changes
+      run: dotnet build --configuration Release
+
+    - name: Test
+      run: |
+        dotnet test

@@ -49,6 +49,7 @@
 			Type = change.Type;
 		}
 
+		/// <summary>Creates an empty Change</summary>
 		public static Change CreateEmpty(Guid id = default)
 		{
 			return new Change()

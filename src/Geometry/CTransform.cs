@@ -103,5 +103,4 @@
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 	}
-
 }

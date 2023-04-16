@@ -65,11 +65,11 @@
 
 		/// <summary>Subtracts p2 from p1</summary>
 		public static CPoint operator -(CPoint p1, CPoint p2)
-			=> new(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
+			=> new(p1.X - p2.X, p1.Y - p2.Y, p1.Z - p2.Z);
 
 		/// <summary>Adds p2 and p1</summary>
 		public static CPoint operator +(CPoint p1, CPoint p2)
-			=> new(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
+			=> new(p2.X + p1.X, p2.Y + p1.Y, p2.Z + p1.Z);
 
 	}
 }

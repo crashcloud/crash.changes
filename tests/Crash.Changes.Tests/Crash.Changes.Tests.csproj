@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Crash.Changes.csproj" />
+    <ProjectReference Include="..\..\src\Crash.Changes.csproj" />
   </ItemGroup>
 
   <ItemGroup>
