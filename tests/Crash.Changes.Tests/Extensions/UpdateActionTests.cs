@@ -24,6 +24,7 @@ namespace Crash.Changes.Tests.Extensions
 			Change change = new Change() { Action = startAction };
 			UpdateAction.AddAction(change, action);
 			Assert.That(change.Action.HasFlag(action), Is.True);
+			Assert.That(change.HasFlag(action), Is.True);
 		}
 
 		[Test, Combinatorial]
@@ -44,6 +45,7 @@ namespace Crash.Changes.Tests.Extensions
 			Change change = new Change() { Action = startAction };
 			UpdateAction.RemoveAction(change, action);
 			Assert.That(change.Action.HasFlag(action), Is.False);
+			Assert.That(change.HasFlag(action), Is.False);
 		}
 
 		[Test, Combinatorial]
@@ -68,11 +70,13 @@ namespace Crash.Changes.Tests.Extensions
 
 				UpdateAction.ToggleAction(change, action);
 				Assert.That(change.Action.HasFlag(action), Is.False);
+				Assert.That(change.HasFlag(action), Is.False);
 			}
 			else
 			{
 				UpdateAction.ToggleAction(change, action);
 				Assert.That(change.Action.HasFlag(action), Is.True);
+				Assert.That(change.HasFlag(action), Is.True);
 			}
 		}
 

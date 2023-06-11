@@ -1,7 +1,7 @@
 ﻿namespace Crash.Changes.Tests.Changes
 {
 
-	public sealed class HashCodeTests
+	public sealed class QualityAndHashCodeTests
 	{
 		private static int COUNT = 100;
 
@@ -19,6 +19,21 @@
 			var changes = UniqueChangePairs.Cast<Change>();
 			var changeSet = changes.ToHashSet();
 			Assert.That(changeSet.Count(), Is.EqualTo(changes.Count()));
+		}
+
+		[Theory]
+		[TestCaseSource(nameof(IdenticalChangePairs))]
+		public void Changes_AreEqual(ValueTuple<Change, Change> changePair)
+		{
+			Assert.That(changePair.Item2,
+				Is.EqualTo(changePair.Item1));
+
+			Assert.That(changePair.Item2.Equals(changePair.Item1));
+
+			Assert.That(changePair.Item2.Equals((object)changePair.Item1), Is.True);
+
+			Assert.That(changePair.Item1, Is.Not.EqualTo(null));
+			Assert.That(changePair.Item1, Is.Not.EqualTo(new object()));
 		}
 
 		public static IEnumerable IdenticalChangePairs
