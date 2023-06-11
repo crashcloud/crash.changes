@@ -13,15 +13,13 @@ namespace Crash.Changes.Tests.Extensions
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction startAction,
+													ChangeAction.Temporary)] ChangeAction startAction,
 												[Values(ChangeAction.Add,
 													ChangeAction.Remove,
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction action)
+													ChangeAction.Temporary)] ChangeAction action)
 		{
 			Change change = new Change() { Action = startAction };
 			UpdateAction.AddAction(change, action);
@@ -35,15 +33,13 @@ namespace Crash.Changes.Tests.Extensions
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction startAction,
+													ChangeAction.Temporary)] ChangeAction startAction,
 												[Values(ChangeAction.Add,
 													ChangeAction.Remove,
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction action)
+													ChangeAction.Temporary)] ChangeAction action)
 		{
 			Change change = new Change() { Action = startAction };
 			UpdateAction.RemoveAction(change, action);
@@ -57,15 +53,13 @@ namespace Crash.Changes.Tests.Extensions
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction startAction,
+													ChangeAction.Temporary)] ChangeAction startAction,
 												[Values(ChangeAction.Add,
 													ChangeAction.Remove,
 													ChangeAction.Update,
 													ChangeAction.Transform,
 													ChangeAction.Locked,
-													ChangeAction.Temporary,
-													ChangeAction.Camera)] ChangeAction action)
+													ChangeAction.Temporary)] ChangeAction action)
 		{
 			Change change = new Change() { Action = startAction };
 

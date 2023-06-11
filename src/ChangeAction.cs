@@ -30,8 +30,5 @@
 		/// <summary>A Temporary Change</summary>
 		Temporary = 1 << 6,
 
-		/// <summary>A Camera Change</summary>
-		Camera = 1 << 7,
-
 	}
 }
