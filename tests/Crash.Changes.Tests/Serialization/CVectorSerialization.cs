@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-using Crash.Geometry;
-
 namespace Crash.Changes.Tests.Serialization
 {
 	[TestFixture]

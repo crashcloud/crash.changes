@@ -1,6 +1,4 @@
-﻿using Crash.Geometry;
-
-namespace Crash.Changes.Tests.Geometry
+﻿namespace Crash.Changes.Tests.Geometry
 {
 
 	public sealed class CVectorTests
