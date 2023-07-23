@@ -14,7 +14,7 @@ namespace Crash.Changes
 		public CTransform Transform { get; set; }
 
 		/// <summary>The latest updates to the Payload</summary>
-		public Dictionary<string, string> Updates { get; set; }
+		public Dictionary<string, string>? Updates { get; set; }
 
 	}
 }
