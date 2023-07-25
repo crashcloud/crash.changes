@@ -27,7 +27,11 @@
 		#region Constructors
 
 		/// <summary>Empty Constructor</summary>
-		public Change() { }
+		public Change()
+		{
+			Id = Guid.NewGuid();
+			Stamp = DateTime.UtcNow;
+		}
 
 		/// <summary>Creates a new fresh Change</summary>
 		public Change(Guid id, string owner, string? payload)
@@ -47,15 +51,6 @@
 			Payload = change.Payload;
 			Action = change.Action;
 			Type = change.Type;
-		}
-
-		/// <summary>Creates an empty Change</summary>
-		public static Change CreateEmpty(Guid id = default)
-		{
-			return new Change()
-			{
-				Id = id == Guid.Empty ? Guid.NewGuid() : id
-			};
 		}
 
 		#endregion
