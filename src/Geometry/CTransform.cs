@@ -102,5 +102,28 @@
 		/// <summary>Returns an Enumerator of all the values</summary>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+		/// <summary>
+		/// Combines two transforms and returns the displacement product
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns>The combined Transform</returns>
+		public static CTransform Combine(CTransform left, CTransform right)
+		{
+			CTransform returnValue = new CTransform();
+			for (int x = 0; x < 4; x++)
+			{
+				for (int y = 0; y < 4; y++)
+				{
+					double leftValue = left[x, y];
+					double rightValue = right[x, y];
+
+					returnValue[x, y] = leftValue + rightValue;
+				}
+			}
+
+			return returnValue;
+		}
+
 	}
 }
