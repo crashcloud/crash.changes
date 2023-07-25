@@ -44,6 +44,16 @@ namespace Crash.Changes.Tests.Serialization
 			}
 		}
 
+		[Theory]
+		// [TestCase("")]
+		// [TestCase(null)]
+		[TestCase("[]")]
+		[TestCase("[\"[]\")]")]
+		public void TestCPointSerializationInValid(string? value)
+		{
+			JsonSerializer.Deserialize<CPoint>(value, TestOptions);
+		}
+
 		private static void TestCPointSerializtion(CPoint cpoint)
 		{
 			var json = JsonSerializer.Serialize(cpoint, TestOptions);
