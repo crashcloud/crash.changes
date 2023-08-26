@@ -56,6 +56,13 @@ namespace Crash.Changes.Tests.Utils
 			get
 			{
 				yield return new object[] { null, null };
+				yield return new object[] { new PayloadPacket(), null };
+				yield return new object[] { null, new PayloadPacket() };
+				yield return new object[] { new PayloadPacket(), new PayloadPacket() };
+				yield return new object[] { new PayloadPacket { Updates = null }, new PayloadPacket() };
+				yield return new object[] { new PayloadPacket(), new PayloadPacket { Updates = null } };
+				yield return new object[] { null, new PayloadPacket { Updates = null } };
+				yield return new object[] { new PayloadPacket { Updates = null }, null };
 			}
 		}
 
@@ -75,7 +82,7 @@ namespace Crash.Changes.Tests.Utils
 
 			Assert.That(result.Transform, Is.EqualTo(CTransform.Unset));
 			Assert.That(result.Data, Is.Empty);
-			Assert.That(result.Updates, Is.Empty);
+			Assert.That(result.Updates, Is.Null.Or.Empty);
 		}
 	}
 }

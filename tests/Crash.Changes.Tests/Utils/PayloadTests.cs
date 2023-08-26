@@ -12,11 +12,105 @@ namespace Crash.Changes.Tests.Utils
 		{
 			get
 			{
+				// Valid Changes
+				yield return AddTransformUpdate;
 				yield return CreateTransformChange;
 				yield return CreateUpdateChange;
 				yield return CreateDataChange;
+
+				// Invalid Changes
+				yield return NullChange;
+				yield return NullData;
+				yield return EmptyChange;
+				yield return EmptyTransformPacket;
+				yield return EmptyUpdatePacket;
+				yield return EmptyAddPacket;
 			}
 		}
+
+		private static object[] NullChange => new object[]
+		{
+			null, new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			false
+		};
+
+		private static object[] NullData => new object[]
+		{
+			new Change { Type = "Camera", Action = ChangeAction.Add, Payload = "Dummy Data" },
+			new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Not.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			true
+		};
+
+		private static object[] EmptyChange => new object[]
+		{
+			new Change { Type = "Lock", Action = ChangeAction.Locked }, new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			true
+		};
+
+		private static object[] EmptyUpdatePacket => new object[]
+		{
+			new Change { Action = ChangeAction.Update, Payload = string.Empty }, new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			false
+		};
+
+		private static object[] EmptyAddPacket => new object[]
+		{
+			new Change { Action = ChangeAction.Add, Payload = string.Empty }, new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			false
+		};
+
+		private static object[] EmptyTransformPacket => new object[]
+		{
+			new Change { Action = ChangeAction.Transform, Payload = string.Empty }, new Action<PayloadPacket>(pp =>
+			{
+				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
+				Assert.That(pp.Data, Is.Empty);
+				Assert.That(pp.Updates, Is.Empty);
+			}),
+			false
+		};
+
+		private static object[] AddTransformUpdate =>
+			new object[]
+			{
+				new Change
+				{
+					Action = ChangeAction.Update | ChangeAction.Add | ChangeAction.Transform,
+					Payload = Serialize(GetFullPayload())
+				},
+				new Action<PayloadPacket>(pp =>
+				{
+					Assert.That(pp.Transform, Is.Not.EqualTo(CTransform.Unset));
+					Assert.That(pp.Data, Is.Not.Null.And.Not.Empty);
+					Assert.That(pp.Updates, Is.Not.Null.And.Not.Empty);
+				}),
+				true
+			};
 
 		private static object[] CreateUpdateChange =>
 			new object[]
@@ -27,7 +121,8 @@ namespace Crash.Changes.Tests.Utils
 					Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
 					Assert.That(pp.Data, Is.Empty);
 					Assert.That(pp.Updates, Is.Not.Null.And.Not.Empty);
-				})
+				}),
+				true
 			};
 
 		private static object[] CreateTransformChange => new object[]
@@ -38,7 +133,8 @@ namespace Crash.Changes.Tests.Utils
 				Assert.That(pp.Transform, Is.Not.EqualTo(CTransform.Unset));
 				Assert.That(pp.Data, Is.Empty);
 				Assert.That(pp.Updates, Is.Not.Null.And.Empty);
-			})
+			}),
+			true
 		};
 
 		private static object[] CreateDataChange => new object[]
@@ -48,17 +144,9 @@ namespace Crash.Changes.Tests.Utils
 				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
 				Assert.That(pp.Data, Is.Not.Null.And.Not.Empty);
 				Assert.That(pp.Updates, Is.Empty);
-			})
+			}),
+			true
 		};
-
-		private static IEnumerable InvalidPayloadData
-		{
-			get
-			{
-				yield return null;
-				yield return new Change();
-			}
-		}
 
 		internal static string? GetPayloadData()
 		{
@@ -69,6 +157,11 @@ namespace Crash.Changes.Tests.Utils
 		{
 			Dictionary<string, string> dict = new() { { "Key", "Value" } };
 			return dict;
+		}
+
+		internal static PayloadPacket GetFullPayload()
+		{
+			return new PayloadPacket { Transform = GetTransform(), Data = GetPayloadData(), Updates = GetUpdate() };
 		}
 
 		internal static CTransform GetTransform()
@@ -84,20 +177,11 @@ namespace Crash.Changes.Tests.Utils
 
 		[Theory]
 		[TestCaseSource(nameof(PayloadData))]
-		public void TryGetPayload_Success(IChange change, Action<PayloadPacket> validate)
+		public void TryGetPayload_Success(IChange change, Action<PayloadPacket> validate, bool expected)
 		{
-			Assert.That(PayloadUtils.TryGetPayloadFromChange(change, out PayloadPacket packet), Is.True);
+			bool actual = PayloadUtils.TryGetPayloadFromChange(change, out PayloadPacket packet);
+			Assert.That(expected, Is.EqualTo(actual));
 			validate(packet);
-		}
-
-		[Theory]
-		[TestCaseSource(nameof(InvalidPayloadData))]
-		public void TryGetPayload_Failure(IChange change)
-		{
-			Assert.That(PayloadUtils.TryGetPayloadFromChange(change, out PayloadPacket packet), Is.False);
-			Assert.That(packet.Data, Is.Empty);
-			Assert.That(packet.Transform, Is.EqualTo(CTransform.Unset));
-			Assert.That(packet.Updates, Is.Empty);
 		}
 	}
 }

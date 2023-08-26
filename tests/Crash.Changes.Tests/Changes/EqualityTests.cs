@@ -71,6 +71,8 @@
 		{
 			Assert.That(changePair.Item2.GetHashCode(),
 				Is.EqualTo(changePair.Item1.GetHashCode()));
+
+			Assert.That(changePair.Item1.Equals(changePair.Item2));
 		}
 
 		[Test]

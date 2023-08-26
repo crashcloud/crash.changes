@@ -30,18 +30,13 @@
 		/// <inheritdoc />
 		public override int GetHashCode()
 		{
-			return HashCode.Combine(Id, Owner, Action, Payload);
+			return HashCode.Combine(Id, Owner, Action, Payload, Type);
 		}
 
 		/// <inheritdoc />
 		public override bool Equals(object? obj)
 		{
-			if (obj is not Change change)
-			{
-				return false;
-			}
-
-			return Equals(change);
+			return obj?.GetHashCode() == GetHashCode();
 		}
 
 

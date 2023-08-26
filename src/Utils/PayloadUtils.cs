@@ -85,7 +85,7 @@ namespace Crash.Changes.Utils
 					return true;
 				}
 
-				if (change.HasFlag(ChangeAction.Add))
+				if (change.HasFlag(ChangeAction.Add) && !HasEmptyPayload(change))
 				{
 					payload = new PayloadPacket { Data = change.Payload };
 					return true;
@@ -108,13 +108,30 @@ namespace Crash.Changes.Utils
 			}
 			catch
 			{
+				payload = new PayloadPacket();
+				return false;
 			}
 
 			payload = new PayloadPacket();
 
-			return string.IsNullOrEmpty(change.Payload) &&
-			       !string.IsNullOrEmpty(change.Type) &&
-			       change.Action != ChangeAction.None;
+			return HasEmptyPayload(change) &&
+			       HasValidType(change) &&
+			       HasValidAction(change);
+		}
+
+		private static bool HasEmptyPayload(IChange change)
+		{
+			return string.IsNullOrEmpty(change?.Payload);
+		}
+
+		private static bool HasValidType(IChange change)
+		{
+			return !string.IsNullOrEmpty(change?.Type);
+		}
+
+		private static bool HasValidAction(IChange change)
+		{
+			return change?.Action != ChangeAction.None;
 		}
 	}
 }
