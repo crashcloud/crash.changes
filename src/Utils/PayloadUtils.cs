@@ -74,12 +74,6 @@ namespace Crash.Changes.Utils
 				return false;
 			}
 
-			if (string.IsNullOrEmpty(change.Payload))
-			{
-				payload = new PayloadPacket();
-				return true;
-			}
-
 			try
 			{
 				if (change.HasFlag(ChangeAction.Add | ChangeAction.Transform | ChangeAction.Update) ||
@@ -117,7 +111,10 @@ namespace Crash.Changes.Utils
 			}
 
 			payload = new PayloadPacket();
-			return false;
+
+			return string.IsNullOrEmpty(change.Payload) &&
+			       !string.IsNullOrEmpty(change.Type) &&
+			       change.Action != ChangeAction.None;
 		}
 	}
 }

@@ -8,15 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61376304-691e-4bee-8e5d-811bf606f73d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/ChangeTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/CombinePayloadsTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometry/CTransform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometry/CTransform.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PayloadPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/PayloadPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Changes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ChangeUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Payload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Crash.Changes.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Crash.Changes.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693072772953</updated>
-      <workItem from="1693072774067" duration="12199000" />
+      <workItem from="1693072774067" duration="12962000" />
     </task>
     <servers />
   </component>
@@ -193,6 +187,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/Utils/PayloadUtils.cs</url>
+          <line>73</line>
+          <properties documentPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" initialLine="73" containingFunctionPresentation="Method 'TryGetPayloadFromChange'">
+            <startOffsets>
+              <option value="2392" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2405" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

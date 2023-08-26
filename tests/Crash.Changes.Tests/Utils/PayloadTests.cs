@@ -18,7 +18,7 @@ namespace Crash.Changes.Tests.Utils
 			}
 		}
 
-		public static object[] CreateUpdateChange =>
+		private static object[] CreateUpdateChange =>
 			new object[]
 			{
 				new Change { Action = ChangeAction.Update, Payload = Serialize(GetUpdate()) },
@@ -26,7 +26,7 @@ namespace Crash.Changes.Tests.Utils
 				{
 					Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
 					Assert.That(pp.Data, Is.Empty);
-					Assert.That(pp.Updates, Is.Not.Null.And.Empty);
+					Assert.That(pp.Updates, Is.Not.Null.And.Not.Empty);
 				})
 			};
 
@@ -95,9 +95,9 @@ namespace Crash.Changes.Tests.Utils
 		public void TryGetPayload_Failure(IChange change)
 		{
 			Assert.That(PayloadUtils.TryGetPayloadFromChange(change, out PayloadPacket packet), Is.False);
-			Assert.That(packet.Data, Is.EqualTo(CTransform.Unset));
+			Assert.That(packet.Data, Is.Empty);
 			Assert.That(packet.Transform, Is.EqualTo(CTransform.Unset));
-			Assert.That(packet.Updates, Is.Not.Null.And.Not.Empty);
+			Assert.That(packet.Updates, Is.Empty);
 		}
 	}
 }
