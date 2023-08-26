@@ -259,6 +259,9 @@ csharp_style_expression_bodied_local_functions = false:silent
 dotnet_diagnostic.CS8618.severity = none
 
 # CS8604: Possible null reference argument.
+dotnet_diagnostic.CS8601.severity = none
+dotnet_diagnostic.CS8602.severity = none
+dotnet_diagnostic.CS8603.severity = none
 dotnet_diagnostic.CS8604.severity = none
 csharp_style_prefer_null_check_over_type_check = true:suggestion
 csharp_style_prefer_local_over_anonymous_function = true:suggestion

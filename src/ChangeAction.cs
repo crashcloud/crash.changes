@@ -1,12 +1,6 @@
 ﻿namespace Crash.Changes
 {
-
-	/// <summary>
-	/// If you need to implement a Custom ChangeAction
-	/// It's best to implement all of the defaults here in your custom enum,
-	/// and then implement your own after these using negative numbers.
-	/// I have added unit tests into this repo to prove this is safe.
-	/// </summary>
+	/// <summary>The action of a <see cref="IChange" /></summary>
 	[Flags]
 	public enum ChangeAction
 	{
@@ -15,6 +9,7 @@
 
 		/// <summary>Add Change</summary>
 		Add = 1 << 1,
+
 		/// <summary>Remove Change</summary>
 		Remove = 1 << 2,
 
@@ -27,8 +22,10 @@
 		/// <summary>A Locking Change</summary>
 		Locked = 1 << 5,
 
-		/// <summary>A Temporary Change</summary>
-		Temporary = 1 << 6,
+		/// <summary>An Unlocking Change</summary>
+		Unlocked = 1 << 6,
 
+		/// <summary>A Temporary Change</summary>
+		Temporary = 1 << 7
 	}
 }
