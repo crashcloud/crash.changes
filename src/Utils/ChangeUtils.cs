@@ -1,7 +1,7 @@
 namespace Crash.Changes.Utils
 {
 	/// <summary>Utilities related to <see cref="IChange" /></summary>
-	public static class Changes
+	public static class ChangeUtils
 	{
 		public static ChangeAction CombineActions(ChangeAction left, ChangeAction right)
 		{

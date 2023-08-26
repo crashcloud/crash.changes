@@ -8,8 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61376304-691e-4bee-8e5d-811bf606f73d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/ChangeTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/CombinePayloadsTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Changes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Changes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Geometry/CTransform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometry/CTransform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PayloadPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/PayloadPacket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Changes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ChangeUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Payload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Crash.Changes.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Crash.Changes.Tests.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +52,10 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/PayloadPacket.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b7045782638f44eaa027e1f0eaa4b86eb57e00/ed/d2b2c8bf/String.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ffc6956627857315891c7b6257cd0c338e2abc27adfcdaab983378bd1944f/CombinatorialAttribute.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -72,7 +82,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "rider.code.cleanup.on.save": "true",
-    "settings.editor.selected.configurable": "RiderDotCoverFilteringPageId",
+    "settings.editor.selected.configurable": "configurable.group.editor",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -111,7 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693072772953</updated>
-      <workItem from="1693072774067" duration="2451000" />
+      <workItem from="1693072774067" duration="12199000" />
     </task>
     <servers />
   </component>
@@ -122,7 +132,7 @@
     <option name="coveragePercentColumnWidth" value="188" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="346" />
+    <option name="symbolColumnWidth" value="455" />
     <coverage-tree-state>
       <expand />
       <select />
@@ -141,5 +151,50 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/Utils/PayloadUtils.cs</url>
+          <line>23</line>
+          <properties documentPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" initialLine="23" containingFunctionPresentation="Method 'Combine'">
+            <startOffsets>
+              <option value="885" />
+            </startOffsets>
+            <endOffsets>
+              <option value="912" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/Utils/PayloadUtils.cs</url>
+          <line>28</line>
+          <properties documentPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" initialLine="28" containingFunctionPresentation="Method 'Combine'">
+            <startOffsets>
+              <option value="980" />
+            </startOffsets>
+            <endOffsets>
+              <option value="997" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/Utils/PayloadUtils.cs</url>
+          <line>33</line>
+          <properties documentPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" initialLine="33" containingFunctionPresentation="Method 'Combine'">
+            <startOffsets>
+              <option value="1065" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1083" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

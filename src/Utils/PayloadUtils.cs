@@ -3,10 +3,12 @@ using System.Text.Json;
 using Crash.Changes.Extensions;
 using Crash.Geometry;
 
+#pragma warning disable CS8603 // Possible null reference return.
+
 namespace Crash.Changes.Utils
 {
 	/// <summary>Utilities related to <see cref="IChange.Payload" /> and <see cref="PayloadPacket" /> </summary>
-	public static class Payload
+	public static class PayloadUtils
 	{
 		/// <summary>
 		///     Combines a base <see cref="PayloadPacket" /> and a new <see cref="PayloadPacket" />
@@ -17,7 +19,22 @@ namespace Crash.Changes.Utils
 		/// <returns>A combined <see cref="PayloadPacket" /></returns>
 		public static PayloadPacket Combine(PayloadPacket basePacket, PayloadPacket newPacket)
 		{
-			string data = basePacket.Data ?? newPacket.Data;
+			if (basePacket is null && newPacket is null)
+			{
+				return new PayloadPacket();
+			}
+
+			if (basePacket is null && newPacket is not null)
+			{
+				return newPacket;
+			}
+
+			if (newPacket is null && basePacket is not null)
+			{
+				return basePacket;
+			}
+
+			string data = string.IsNullOrEmpty(basePacket.Data) ? newPacket.Data : basePacket.Data;
 			CTransform newTransform = CTransform.Combine(basePacket.Transform, newPacket.Transform);
 			Dictionary<string, string> updates = CombineDictionaries(basePacket.Updates, newPacket.Updates);
 
