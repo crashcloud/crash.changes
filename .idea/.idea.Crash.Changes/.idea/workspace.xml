@@ -8,15 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61376304-691e-4bee-8e5d-811bf606f73d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Utils/Changes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utils/Payload.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Change.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Change.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChangeAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChangeAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Crash.Changes.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Crash.Changes.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PayloadPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/PayloadPacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/ConstructorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/ConstructorTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/HashCodeTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/HashCodeTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Changes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Changes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693072772953</updated>
-      <workItem from="1693072774067" duration="2145000" />
+      <workItem from="1693072774067" duration="2451000" />
     </task>
     <servers />
   </component>
