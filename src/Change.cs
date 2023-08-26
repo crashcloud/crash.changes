@@ -1,10 +1,8 @@
 ﻿namespace Crash.Changes
 {
-
 	/// <summary>Provides a reliable, reusable class for communication</summary>
 	public sealed class Change : IChange, IEquatable<Change>
 	{
-
 		/// <summary>The time of creation</summary>
 		public DateTime Stamp { get; set; }
 
@@ -23,6 +21,29 @@
 		/// <summary>The type of Change. See ChangeAction.</summary>
 		public ChangeAction Action { get; set; }
 
+		/// <summary>Tests for equality of two changes</summary>
+		public bool Equals(Change? other)
+		{
+			return other?.GetHashCode() == GetHashCode();
+		}
+
+		/// <inheritdoc />
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(Id, Owner, Action, Payload);
+		}
+
+		/// <inheritdoc />
+		public override bool Equals(object? obj)
+		{
+			if (obj is not Change change)
+			{
+				return false;
+			}
+
+			return Equals(change);
+		}
+
 
 		#region Constructors
 
@@ -30,15 +51,6 @@
 		public Change()
 		{
 			Id = Guid.NewGuid();
-			Stamp = DateTime.UtcNow;
-		}
-
-		/// <summary>Creates a new fresh Change</summary>
-		public Change(Guid id, string owner, string? payload)
-		{
-			Id = id;
-			Owner = owner;
-			Payload = payload;
 			Stamp = DateTime.UtcNow;
 		}
 
@@ -54,20 +66,5 @@
 		}
 
 		#endregion
-
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => HashCode.Combine(Id, Owner, Action, Payload);
-
-		/// <summary>Tests for equality of two changes</summary>
-		public bool Equals(Change? other)
-			=> other?.GetHashCode() == GetHashCode();
-
-		/// <inheritdoc/>
-		public override bool Equals(object? obj)
-		{
-			if (obj is not Change change) return false;
-			return Equals(change);
-		}
 	}
 }
