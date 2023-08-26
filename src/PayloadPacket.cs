@@ -2,7 +2,7 @@
 
 namespace Crash.Changes
 {
-	/// <summary>A Change Description</summary>
+	/// <summary>A Fully Featured Combined Payload to describe any change</summary>
 	public sealed record PayloadPacket
 	{
 		/// <summary>The Initialised Data, Geometry, BIM Objects etc.</summary>

@@ -9,11 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61376304-691e-4bee-8e5d-811bf606f73d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Crash.Changes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Change.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Change.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PayloadUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/HashCodeTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Changes/EqualityTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/CombinePayloadsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/CombinePayloadsTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Crash.Changes.Tests/Utils/PayloadTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PayloadPacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/PayloadPacket.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693072772953</updated>
-      <workItem from="1693072774067" duration="16692000" />
+      <workItem from="1693072774067" duration="16899000" />
     </task>
     <servers />
   </component>
