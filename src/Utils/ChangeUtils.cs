@@ -16,6 +16,17 @@ namespace Crash.Changes.Utils
 				result &= ~ChangeAction.Add;
 			}
 
+			if (right.HasFlag(ChangeAction.Release))
+			{
+				result &= ~ChangeAction.Temporary;
+				result &= ~ChangeAction.Release;
+			}
+
+			if (right.HasFlag(ChangeAction.Temporary))
+			{
+				result &= ~ChangeAction.Release;
+			}
+
 			if (right.HasFlag(ChangeAction.Locked))
 			{
 				result &= ~ChangeAction.Unlocked;

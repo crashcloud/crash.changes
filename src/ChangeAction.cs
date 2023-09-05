@@ -26,6 +26,9 @@
 		Unlocked = 1 << 6,
 
 		/// <summary>A Temporary Change</summary>
-		Temporary = 1 << 7
+		Temporary = 1 << 7,
+
+		/// <summary>A Done Change</summary>
+		Release = 1 << 8
 	}
 }
