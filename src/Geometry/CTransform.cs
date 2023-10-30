@@ -87,6 +87,11 @@
 		public bool IsValid()
 		{
 			double[] values = _transforms.SelectMany(t => t).ToArray();
+
+			// Check that the matrix is all zeros
+			if (values.All(v => v == 0))
+				return true;
+
 			return values.Length == 16 &&
 			       !values.Any(v =>
 			       {
@@ -111,25 +116,33 @@
 
 		/// <summary>
 		///     Combines two transforms and returns the displacement product
+		///     perform matrix multiplication (dot product)
 		/// </summary>
-		/// <param name="left"></param>
-		/// <param name="right"></param>
+		/// <param name="initialTransform"></param>
+		/// <param name="newTransform"></param>
 		/// <returns>The combined Transform</returns>
-		public static CTransform Combine(CTransform left, CTransform right)
+		public static CTransform MatrixDotProduct(CTransform initialTransform, CTransform newTransform)
 		{
-			CTransform returnValue = new();
-			for (int x = 0; x < 4; x++)
-			{
-				for (int y = 0; y < 4; y++)
-				{
-					double leftValue = left[x, y];
-					double rightValue = right[x, y];
+			int rows1 = 4;
+			int cols1 = 4;
+			int cols2 = 4;
 
-					returnValue[x, y] = leftValue + rightValue;
+			CTransform result = new CTransform();
+
+			for (int i = 0; i < rows1; i++)
+			{
+				for (int j = 0; j < cols2; j++)
+				{
+					double sum = 0;
+					for (int k = 0; k < cols1; k++)
+					{
+						sum += initialTransform[i, k] * newTransform[k, j];
+					}
+					result[i, j] = sum;
 				}
 			}
 
-			return returnValue;
+			return result;
 		}
 	}
 }
