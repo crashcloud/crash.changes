@@ -121,7 +121,7 @@
 		/// <param name="initialTransform"></param>
 		/// <param name="newTransform"></param>
 		/// <returns>The combined Transform</returns>
-		public static CTransform MatrixDotProduct(CTransform initialTransform, CTransform newTransform)
+		public static CTransform Combine(CTransform initialTransform, CTransform newTransform)
 		{
 			int rows1 = 4;
 			int cols1 = 4;

@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 using Crash.Changes.Extensions;
 using Crash.Geometry;
@@ -35,7 +35,7 @@ namespace Crash.Changes.Utils
 			}
 
 			string data = string.IsNullOrEmpty(basePacket.Data) ? newPacket.Data : basePacket.Data;
-			CTransform newTransform = CTransform.Combine(basePacket.Transform, newPacket.Transform);
+			CTransform newTransform = CTransform.MatrixDotProduct(basePacket.Transform, newPacket.Transform);
 			Dictionary<string, string> updates = CombineDictionaries(basePacket.Updates, newPacket.Updates);
 
 			return new PayloadPacket { Data = data, Transform = newTransform, Updates = updates };
