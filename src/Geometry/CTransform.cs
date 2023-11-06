@@ -5,15 +5,15 @@
 	public struct CTransform : IEnumerable<double>
 	{
 		/// <summary>the transform matrix</summary>
-		private readonly double[][] _transforms;
+		private readonly double[,] _transforms;
 
 		/// <summary>An Empty Transform</summary>
 		public static CTransform Unset = new();
 
-		/// <summary>Defaults to 0 for all values.</summary>
+		/// <summary>Defaults to the identity matrix</summary>
 		public CTransform()
 		{
-			_transforms = GetUniformMatrix(0);
+			_transforms = GetIdentityMatrix();
 		}
 
 		/// <summary>Creates a new CTransform</summary>
@@ -23,22 +23,22 @@
 			double m30 = 0, double m31 = 0, double m32 = 0, double m33 = 0)
 			: this()
 		{
-			_transforms[0][0] = m00;
-			_transforms[0][1] = m01;
-			_transforms[0][2] = m02;
-			_transforms[0][3] = m03;
-			_transforms[1][0] = m10;
-			_transforms[1][1] = m11;
-			_transforms[1][2] = m12;
-			_transforms[1][3] = m13;
-			_transforms[2][0] = m20;
-			_transforms[2][1] = m21;
-			_transforms[2][2] = m22;
-			_transforms[2][3] = m23;
-			_transforms[3][0] = m30;
-			_transforms[3][1] = m31;
-			_transforms[3][2] = m32;
-			_transforms[3][3] = m33;
+			_transforms[0,0] = m00;
+			_transforms[0,1] = m01;
+			_transforms[0, 2] = m02;
+			_transforms[0, 3] = m03;
+			_transforms[1, 0] = m10;
+			_transforms[1, 1] = m11;
+			_transforms[1, 2] = m12;
+			_transforms[1, 3] = m13;
+			_transforms[2, 0] = m20;
+			_transforms[2, 1] = m21;
+			_transforms[2, 2] = m22;
+			_transforms[2, 3] = m23;
+			_transforms[3, 0] = m30;
+			_transforms[3, 1] = m31;
+			_transforms[3, 2] = m32;
+			_transforms[3, 3] = m33;
 		}
 
 		/// <summary>Creates a new CTransform from an array of arrays</summary>
@@ -60,7 +60,7 @@
 						return;
 					}
 
-					_transforms[row][col] = mValues[colValue];
+					_transforms[row, col] = mValues[colValue];
 				}
 			}
 		}
@@ -76,17 +76,47 @@
 			return matrix;
 		}
 
+		/// <summary>Returns a Identity Matrix</summary>
+		private static double[,] GetIdentityMatrix()
+		{
+			double[,] matrix =
+			{
+				{ 1, 0, 0, 0 }, { 0, 1, 0, 0 },
+				{ 0, 0, 1, 0 }, { 0, 0, 0, 1 }
+			};
+			return matrix;
+		}
+
 		/// <summary>Returns the value at the given coordinate</summary>
 		public double this[int row, int column]
 		{
-			get => _transforms[row][column];
-			set => _transforms[row][column] = value;
+			get => _transforms[row,column];
+			set => _transforms[row, column] = value;
+		}
+
+		public static double[] Flatten(double[,] twoDimensionalArray)
+		{
+			int numRows = twoDimensionalArray.GetLength(0);
+			int numCols = twoDimensionalArray.GetLength(1);
+			double[] oneDimensionalArray = new double[numRows * numCols];
+			int index = 0;
+
+			for (int row = 0; row < numRows; row++)
+			{
+				for (int col = 0; col < numCols; col++)
+				{
+					oneDimensionalArray[index] = twoDimensionalArray[row, col];
+					index++;
+				}
+			}
+
+			return oneDimensionalArray;
 		}
 
 		/// <summary>Tests the Matrix for any NaN's or infinity numbers</summary>
 		public bool IsValid()
 		{
-			double[] values = _transforms.SelectMany(t => t).ToArray();
+			double[] values = Flatten(_transforms);
 
 			// Check that the matrix is all zeros
 			if (values.All(v => v == 0))
@@ -105,7 +135,7 @@
 		/// <summary>Returns an Enumerator of all the values</summary>
 		public IEnumerator<double> GetEnumerator()
 		{
-			return _transforms.SelectMany(v => v).GetEnumerator();
+			return Flatten(_transforms).ToList().GetEnumerator();
 		}
 
 		/// <summary>Returns an Enumerator of all the values</summary>
