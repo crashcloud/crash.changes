@@ -10,6 +10,11 @@
 *.userosscache
 *.sln.docstates
 
+# Mac files
+*.DS_Store
+.DS_Store
+**/.DS_Store
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -396,6 +401,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-.idea/.idea.Crash.Changes/.idea/indexLayout.xml
-.idea/.idea.Crash.Changes/.idea/workspace.xml
-.idea/.idea.Crash.Changes/.idea/workspace.xml
+.idea/**/workspace.xml
+.idea/tasks.xml
+
