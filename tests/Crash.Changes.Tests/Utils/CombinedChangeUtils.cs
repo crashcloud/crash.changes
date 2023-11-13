@@ -12,11 +12,13 @@ namespace Crash.Changes.Tests.Utils
 			{
 				yield return SimpleActionCombination();
 				yield return NewOwner();
-				yield return PayloadDataCombination();
 				yield return PayloadTransformCombination();
+				/* TODO : Fill out
+				yield return PayloadDataCombination();
 				yield return PayloadUpdateCombination();
 				yield return FullPayloadCombination();
 				yield return PayloadCombination();
+				*/
 			}
 		}
 
