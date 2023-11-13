@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace Crash.Changes.Utils
 {
 	/// <summary>Utilities related to <see cref="IChange" /></summary>
@@ -38,6 +40,40 @@ namespace Crash.Changes.Utils
 			}
 
 			return result;
+		}
+
+		public static IChange CombineChanges(IChange previous, IChange @new)
+		{
+			if (previous is null)
+			{
+				throw new ArgumentException($"{nameof(previous)} is null");
+			}
+
+			if (@new is null)
+			{
+				throw new ArgumentException($"{nameof(@new)} is null");
+			}
+
+			Guid combinedId = previous.Id;
+			if (previous.Id == Guid.Empty ||
+			    previous.Id != @new.Id)
+			{
+				throw new ArgumentException("Id is Invalid!");
+			}
+
+			PayloadUtils.TryGetPayloadFromChange(previous, out PayloadPacket previousPacket);
+			PayloadUtils.TryGetPayloadFromChange(@new, out PayloadPacket newPacket);
+			PayloadPacket payload = PayloadUtils.Combine(previousPacket, newPacket);
+
+			return new Change
+			{
+				Id = combinedId,
+				Stamp = DateTime.Now,
+				Payload = JsonSerializer.Serialize(payload),
+				Owner = @new.Owner ?? previous.Owner,
+				Type = previous.Type ?? @new.Type,
+				Action = CombineActions(previous.Action, @new.Action)
+			};
 		}
 	}
 }
