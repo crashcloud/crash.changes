@@ -68,7 +68,7 @@ namespace Crash.Changes.Utils
 		/// <returns>True on success, false on nulls, invalid change or failure</returns>
 		public static bool TryGetPayloadFromChange(IChange change, out PayloadPacket payload)
 		{
-			if (change is null)
+			if (change?.Payload is null)
 			{
 				payload = new PayloadPacket();
 				return false;
