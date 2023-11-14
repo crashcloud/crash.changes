@@ -56,7 +56,8 @@ namespace Crash.Changes.Utils
 
 			Guid combinedId = previous.Id;
 			if (previous.Id == Guid.Empty ||
-			    previous.Id != @new.Id)
+			    previous.Id != @new.Id ||
+			    @new.Id == Guid.Empty)
 			{
 				throw new ArgumentException("Id is Invalid!");
 			}
@@ -74,6 +75,43 @@ namespace Crash.Changes.Utils
 				Type = previous.Type ?? @new.Type,
 				Action = CombineActions(previous.Action, @new.Action)
 			};
+		}
+
+		/// <summary>Checks two changes for Equality</summary>
+		/// <returns>True if everything besides the date is equal</returns>
+		public static bool Equal(IChange left, IChange right)
+		{
+			if (left is null || right is null)
+			{
+				return false;
+			}
+
+			if (left.Id != right.Id)
+			{
+				return false;
+			}
+
+			if (left.Action != right.Action)
+			{
+				return false;
+			}
+
+			if (left.Payload?.Equals(right.Payload, StringComparison.InvariantCultureIgnoreCase) != true)
+			{
+				return false;
+			}
+
+			if (left.Type?.Equals(right.Payload, StringComparison.InvariantCultureIgnoreCase) != true)
+			{
+				return false;
+			}
+
+			if (left.Owner?.Equals(right.Payload, StringComparison.InvariantCultureIgnoreCase) != true)
+			{
+				return false;
+			}
+
+			return true;
 		}
 	}
 }

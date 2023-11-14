@@ -21,7 +21,7 @@ namespace Crash.Changes.Tests.Utils
 				// Invalid Changes
 				yield return NullChange;
 				yield return NullData;
-				yield return EmptyChange;
+				// yield return EmptyChange; // Not Valid
 				yield return EmptyTransformPacket;
 				yield return EmptyUpdatePacket;
 				yield return EmptyAddPacket;

@@ -6,19 +6,18 @@ namespace Crash.Changes.Tests.Serialization
 	[TestFixture]
 	public sealed class CPointSerializationTests
 	{
-
-		internal readonly static JsonSerializerOptions TestOptions;
+		internal static readonly JsonSerializerOptions TestOptions;
 
 		static CPointSerializationTests()
 		{
-			TestOptions = new JsonSerializerOptions()
+			TestOptions = new JsonSerializerOptions
 			{
 				IgnoreReadOnlyFields = true,
 				IgnoreReadOnlyProperties = true,
 				IncludeFields = true,
 				NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
 				ReadCommentHandling = JsonCommentHandling.Skip,
-				WriteIndented = true, // TODO : Should this be avoided? Does it add extra memory?
+				WriteIndented = true // TODO : Should this be avoided? Does it add extra memory?
 			};
 		}
 
@@ -35,11 +34,11 @@ namespace Crash.Changes.Tests.Serialization
 		[TestCase(100)]
 		public void TestCPointSerializationRandom(int count)
 		{
-			for (var i = 0; i < count; i++)
+			for (int i = 0; i < count; i++)
 			{
-				var x = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
-				var y = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
-				var z = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
+				double x = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
+				double y = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
+				double z = TestContext.CurrentContext.Random.NextDouble(short.MinValue, short.MaxValue);
 				TestCPointSerializtion(new CPoint(x, y, z));
 			}
 		}
@@ -51,13 +50,13 @@ namespace Crash.Changes.Tests.Serialization
 		[TestCase("[\"[]\")]")]
 		public void TestCPointSerializationInValid(string? value)
 		{
-			JsonSerializer.Deserialize<CPoint>(value, TestOptions);
+			Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<CPoint>(value, TestOptions));
 		}
 
 		private static void TestCPointSerializtion(CPoint cpoint)
 		{
-			var json = JsonSerializer.Serialize(cpoint, TestOptions);
-			var cPointOut = JsonSerializer.Deserialize<CPoint>(json, TestOptions);
+			string json = JsonSerializer.Serialize(cpoint, TestOptions);
+			CPoint cPointOut = JsonSerializer.Deserialize<CPoint>(json, TestOptions);
 			Assert.Multiple(() =>
 			{
 				Assert.That(cpoint.X, Is.EqualTo(cPointOut.X));
