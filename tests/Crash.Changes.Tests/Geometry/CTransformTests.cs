@@ -34,9 +34,62 @@ namespace Crash.Changes.Tests.Geometry
 			Assert.That(combined, Is.EqualTo(expected));
 		}
 
-		public void TransformRotation() { }	
+		[TestCase(1, 0, 0)]
+		[TestCase(1, 1, 0)]
+		[TestCase(1, 1, 1)]
+		[TestCase(1, 0, 1)]
+		[TestCase(0, 0, 1)]
+		[TestCase(0, 1, 1)]
+		[TestCase(0, 1, 0)]
+		[TestCase(0, 0, 0)]
+		public void TransformRotation(double rx, double ry, double rz) 
+		{
+			CTransform transform = new CTransform();
+			CTransform secondTransform = new CTransform(
+				m00: Math.Cos(ry) + Math.Cos(rz), 
+				m01: -Math.Sin(rz), 
+				m02: Math.Sin(ry),
+				m10: Math.Sin(rz),
+				m11: Math.Cos(rx) + Math.Cos(rz),
+				m12: -Math.Sin(rx),
+				m20: -Math.Sin(ry),
+				m21: Math.Sin(rx),
+				m22: Math.Cos(rx) + Math.Cos(ry));
 
-		public void TransformScale() { }
+			CTransform combined = CTransform.Combine(transform, secondTransform);
+
+			double[,] expected = new double[4, 4]
+			{
+				{ Math.Cos(ry)+Math.Cos(rz), -Math.Sin(rz), Math.Sin(ry), 0 },
+				{ Math.Sin(rz), Math.Cos(rx)+Math.Cos(rz), -Math.Sin(rx), 0 },
+				{ -Math.Sin(ry), Math.Sin(rx), Math.Cos(rx)+Math.Cos(ry), 0 },
+				{ 0, 0, 0, 1 }
+			};
+		}
+
+		[TestCase(1, 0, 0)]
+		[TestCase(1, 1, 0)]
+		[TestCase(1, 1, 1)]
+		[TestCase(1, 0, 1)]
+		[TestCase(0, 0, 1)]
+		[TestCase(0, 1, 1)]
+		[TestCase(0, 1, 0)]
+		[TestCase(0, 0, 0)]
+		public void TransformScale(double sx, double sy, double sz) 
+		{
+			CTransform transform = new CTransform();
+			CTransform secondTransform = new CTransform(m00: sx, m11: sy, m22: sz);
+
+			CTransform combined = CTransform.Combine(transform, secondTransform);
+
+			double[,] expected = new double[4, 4]
+			{
+				{ sx, 0, 0, 0 },
+				{ 0, sy, 0, 0 },
+				{ 0, 0, sz, 0 },
+				{ 0, 0, 0, 1 }
+			};
+		}
 
 
 	}
