@@ -15,7 +15,7 @@
 
 
 		/// <summary>Returns a non existant drection.</summary>
-		public static CVector Unset => new(double.NaN, double.NaN, double.NaN);
+		public static CVector None => new(double.NaN, double.NaN, double.NaN);
 
 		/// <summary>Returns a CVector at 0,0,0.</summary>
 		public static CVector Origin => new(0, 0, 0);

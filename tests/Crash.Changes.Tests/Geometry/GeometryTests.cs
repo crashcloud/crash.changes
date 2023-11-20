@@ -72,7 +72,7 @@
 		[Test]
 		public void CVectorConsts()
 		{
-			var unset = CVector.Unset;
+			var unset = CVector.None;
 			Assert.Multiple(() =>
 			{
 				Assert.That(unset.X, Is.EqualTo(double.NaN));
@@ -83,7 +83,7 @@
 			unset.Y = 300;
 			unset.Z = 500;
 
-			var newUnset = CVector.Unset;
+			var newUnset = CVector.None;
 			Assert.Multiple(() =>
 			{
 				Assert.That(newUnset.X, Is.EqualTo(double.NaN));
