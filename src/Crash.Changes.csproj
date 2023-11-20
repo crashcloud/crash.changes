@@ -11,7 +11,7 @@
 		<Company>Crash, Changes</Company>
 		<Product>Crash</Product>
 		<Copyright>Crash</Copyright>
-		<PackageProjectUrl>https://github.com/crashcloud/changess</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/crashcloud/crash.changes</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/crashcloud/crash.changes</RepositoryUrl>
 		<PackageTags>Crash, Changes</PackageTags>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>

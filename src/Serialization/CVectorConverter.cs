@@ -6,58 +6,40 @@ using Crash.Geometry;
 
 namespace Crash.Changes.Serialization
 {
-
 	/// <summary>
-	/// Converts a CVector into json efficiently
+	///     Converts a CVector into json efficiently
 	/// </summary>
 	public sealed class CVectorConverter : JsonConverter<CVector>
 	{
-
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public override CVector Read(ref Utf8JsonReader reader, Type typeToConvert,
-									JsonSerializerOptions options)
+			JsonSerializerOptions options)
 		{
-			if (reader.TokenType != JsonTokenType.StartArray)
+			string[]? array = JsonSerializer.Deserialize<string[]>(ref reader, options);
+
+			if (array is null || array.Length < 3)
 			{
-				throw new JsonException();
+				return CVector.None;
 			}
 
-			string? x, y, z;
-
-			if (!reader.Read()) throw new JsonException("Couldn't find x!");
-			x = reader.GetString();
-
-			if (!reader.Read()) throw new JsonException("Couldn't find y!");
-			y = reader.GetString();
-
-			if (!reader.Read()) throw new JsonException("Couldn't find z!");
-			z = reader.GetString();
-
-			if (reader.Read() && reader.TokenType == JsonTokenType.EndArray)
-			{
-				double xNum = FloatingDoubleConverter.FromString(x, CultureInfo.InvariantCulture);
-				double yNum = FloatingDoubleConverter.FromString(y, CultureInfo.InvariantCulture);
-				double zNum = FloatingDoubleConverter.FromString(z, CultureInfo.InvariantCulture);
-
-				return new CVector(xNum, yNum, zNum);
-			}
-			else
-			{
-				throw new JsonException();
-			}
+			return new CVector(
+				FloatingDoubleConverter.FromString(array[0], CultureInfo.InvariantCulture),
+				FloatingDoubleConverter.FromString(array[1], CultureInfo.InvariantCulture),
+				FloatingDoubleConverter.FromString(array[2], CultureInfo.InvariantCulture)
+			);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public override void Write(Utf8JsonWriter writer, CVector value,
-									JsonSerializerOptions options)
+			JsonSerializerOptions options)
 		{
-			writer.WriteStartArray();
-			writer.WriteStringValue(FloatingDoubleConverter.ToString(value.X, CultureInfo.InvariantCulture));
-			writer.WriteStringValue(FloatingDoubleConverter.ToString(value.Y, CultureInfo.InvariantCulture));
-			writer.WriteStringValue(FloatingDoubleConverter.ToString(value.Z, CultureInfo.InvariantCulture));
-			writer.WriteEndArray();
+			JsonSerializer.Serialize(writer,
+				new[]
+				{
+					FloatingDoubleConverter.ToString(value.X, CultureInfo.InvariantCulture),
+					FloatingDoubleConverter.ToString(value.Y, CultureInfo.InvariantCulture),
+					FloatingDoubleConverter.ToString(value.Z, CultureInfo.InvariantCulture)
+				}, options);
 		}
-
 	}
-
 }

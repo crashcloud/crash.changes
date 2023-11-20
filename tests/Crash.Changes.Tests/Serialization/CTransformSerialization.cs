@@ -6,19 +6,18 @@ namespace Crash.Changes.Tests.Serialization
 	[TestFixture]
 	public sealed class CTransformSerializationTests
 	{
-
-		internal readonly static JsonSerializerOptions TestOptions;
+		internal static readonly JsonSerializerOptions TestOptions;
 
 		static CTransformSerializationTests()
 		{
-			TestOptions = new JsonSerializerOptions()
+			TestOptions = new JsonSerializerOptions
 			{
 				IgnoreReadOnlyFields = true,
 				IgnoreReadOnlyProperties = true,
 				IncludeFields = true,
 				NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
 				ReadCommentHandling = JsonCommentHandling.Skip,
-				WriteIndented = true, // TODO : Should this be avoided? Does it add extra memory?
+				WriteIndented = true // TODO : Should this be avoided? Does it add extra memory?
 			};
 		}
 
@@ -35,7 +34,7 @@ namespace Crash.Changes.Tests.Serialization
 		[TestCase(100)]
 		public void TestCTransformSerializationRandom(int count)
 		{
-			for (var i = 0; i < count; i++)
+			for (int i = 0; i < count; i++)
 			{
 				double[] values = new double[16];
 				for (int j = 0; j < 16; j++)
@@ -47,17 +46,17 @@ namespace Crash.Changes.Tests.Serialization
 			}
 		}
 
-		private static void TestCTransformSerializtion(CTransform CTransform)
+		private static void TestCTransformSerializtion(CTransform cTransform)
 		{
-			var json = JsonSerializer.Serialize(CTransform, TestOptions);
-			var cTransformOut = JsonSerializer.Deserialize<CTransform>(json, TestOptions);
+			string? json = JsonSerializer.Serialize(cTransform, TestOptions);
+			CTransform cTransformOut = JsonSerializer.Deserialize<CTransform>(json, TestOptions);
 			Assert.Multiple(() =>
 			{
 				for (int x = 0; x < 4; x++)
 				{
 					for (int y = 0; x < 4; x++)
 					{
-						Assert.That(CTransform[x, y], Is.EqualTo(cTransformOut[x, y]));
+						Assert.That(cTransform[x, y], Is.EqualTo(cTransformOut[x, y]));
 					}
 				}
 			});
