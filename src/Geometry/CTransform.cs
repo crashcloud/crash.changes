@@ -7,6 +7,11 @@
 		/// <summary>the transform matrix</summary>
 		private readonly double[,] _transforms;
 
+		internal double[,] GetTransforms()
+		{
+			return _transforms;
+		}
+
 		/// <summary>An Empty Transform</summary>
 		public static CTransform Unset = new();
 
@@ -23,8 +28,8 @@
 			double m30 = 0, double m31 = 0, double m32 = 0, double m33 = 0)
 			: this()
 		{
-			_transforms[0,0] = m00;
-			_transforms[0,1] = m01;
+			_transforms[0, 0] = m00;
+			_transforms[0, 1] = m01;
 			_transforms[0, 2] = m02;
 			_transforms[0, 3] = m03;
 			_transforms[1, 0] = m10;
@@ -90,7 +95,7 @@
 		/// <summary>Returns the value at the given coordinate</summary>
 		public double this[int row, int column]
 		{
-			get => _transforms[row,column];
+			get => _transforms[row, column];
 			set => _transforms[row, column] = value;
 		}
 
@@ -120,7 +125,9 @@
 
 			// Check that the matrix is all zeros
 			if (values.All(v => v == 0))
+			{
 				return true;
+			}
 
 			return values.Length == 16 &&
 			       !values.Any(v =>
@@ -157,7 +164,7 @@
 			int cols1 = 4;
 			int cols2 = 4;
 
-			CTransform result = new CTransform();
+			CTransform result = new();
 
 			for (int i = 0; i < rows1; i++)
 			{
@@ -168,6 +175,7 @@
 					{
 						sum += initialTransform[i, k] * newTransform[k, j];
 					}
+
 					result[i, j] = sum;
 				}
 			}
