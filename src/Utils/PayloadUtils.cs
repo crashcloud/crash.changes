@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 using Crash.Changes.Extensions;
 using Crash.Geometry;
