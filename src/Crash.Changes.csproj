@@ -30,13 +30,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DebugType>none</DebugType>
+		<DebugType>portable</DebugType>
 		<CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<DebugType>none</DebugType>
+		<DebugType>portable</DebugType>
 		<CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
