@@ -46,7 +46,9 @@
 	<ItemGroup>
 		<Using Include="Crash.Changes.Serialization"/>
 		<Using Include="System.Collections"/>
-		<Using Include="System.Text.Json.Serialization.JsonConverterAttribute"/>
+		<Using Include="System.Text.Json.Serialization.JsonConverterAttribute">
+			<Alias>JsonConverterAttribute</Alias>
+		</Using>
 	</ItemGroup>
 
 	<ItemGroup>
