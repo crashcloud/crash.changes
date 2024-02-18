@@ -13,14 +13,14 @@
 		<Copyright>Crash</Copyright>
 		<PackageProjectUrl>https://github.com/crashcloud/crash.changes</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/crashcloud/crash.changes</RepositoryUrl>
-		<PackageTags>Crash, Changes</PackageTags>
+		<PackageTags>Crash, Changes, CrashCloud</PackageTags>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
-		<AnalysisLevel>6.0-recommended</AnalysisLevel>
+		<AnalysisLevel>7.0-recommended</AnalysisLevel>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IncludeSymbols>True</IncludeSymbols>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<AssemblyVersion>1.2.0</AssemblyVersion>
+		<AssemblyVersion>1.2.1</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<ErrorReport>send</ErrorReport>
 		<Version>$(AssemblyVersion)</Version>
@@ -28,48 +28,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Provides a reliable, reusable class for communicating Rhino Changes</Description>
 		<Configurations>Debug;Release</Configurations>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DebugType>portable</DebugType>
-		<CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-		<DebugSymbols>true</DebugSymbols>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|x64'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|x64'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|x64'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|x64'">
-		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -88,9 +46,7 @@
 	<ItemGroup>
 		<Using Include="Crash.Changes.Serialization"/>
 		<Using Include="System.Collections"/>
-		<Using Include="System.Text.Json.Serialization.JsonConverterAttribute">
-			<Alias>JsonConverterAttribute</Alias>
-		</Using>
+		<Using Include="System.Text.Json.Serialization.JsonConverterAttribute"/>
 	</ItemGroup>
 
 	<ItemGroup>
