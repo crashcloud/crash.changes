@@ -9,7 +9,6 @@ namespace Crash.Changes.Tests.Utils
 		// Add/Remove defaults
 		[TestCase(ChangeAction.Add | ChangeAction.Remove, ChangeAction.Add | ChangeAction.Remove,
 			ExpectedResult = ChangeAction.Add)]
-
 		// Add => Add
 		[TestCase(ChangeAction.Remove, ChangeAction.Add,
 			ExpectedResult = ChangeAction.Add)]

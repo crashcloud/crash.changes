@@ -2,7 +2,7 @@
 {
 	/// <summary>A Transformation Matrix.</summary>
 	[JsonConverter(typeof(CTransformConverter))]
-	public struct CTransform : IEnumerable<double>
+	public struct CTransform : IEnumerable<double>, IEquatable<CTransform>
 	{
 		/// <summary>the transform matrix</summary>
 		private readonly double[,] _transforms;
@@ -84,11 +84,7 @@
 		/// <summary>Returns a Identity Matrix</summary>
 		private static double[,] GetIdentityMatrix()
 		{
-			double[,] matrix =
-			{
-				{ 1, 0, 0, 0 }, { 0, 1, 0, 0 },
-				{ 0, 0, 1, 0 }, { 0, 0, 0, 1 }
-			};
+			double[,] matrix = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
 			return matrix;
 		}
 
@@ -181,6 +177,22 @@
 			}
 
 			return result;
+		}
+
+		public bool Equals(CTransform other)
+		{
+			for (int row = 0; row < 4; row++)
+			{
+				for (int col = 0; col < 4; col++)
+				{
+					if (Math.Abs(this[row, col] - other[row, col]) > 0.00001)
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 	}
 }

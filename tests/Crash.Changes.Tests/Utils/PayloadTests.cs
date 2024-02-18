@@ -45,10 +45,10 @@ namespace Crash.Changes.Tests.Utils
 			new Action<PayloadPacket>(pp =>
 			{
 				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
-				Assert.That(pp.Data, Is.Not.Empty);
+				Assert.That(pp.Data, Is.Empty);
 				Assert.That(pp.Updates, Is.Empty);
 			}),
-			true
+			false
 		};
 
 		private static object[] EmptyChange => new object[]
@@ -105,7 +105,7 @@ namespace Crash.Changes.Tests.Utils
 				},
 				new Action<PayloadPacket>(pp =>
 				{
-					Assert.That(pp.Transform, Is.Not.EqualTo(CTransform.Unset));
+					Assert.That(pp.Transform, Is.EqualTo(GetTransform()));
 					Assert.That(pp.Data, Is.Not.Null.And.Not.Empty);
 					Assert.That(pp.Updates, Is.Not.Null.And.Not.Empty);
 				}),
@@ -115,7 +115,10 @@ namespace Crash.Changes.Tests.Utils
 		private static object[] CreateUpdateChange =>
 			new object[]
 			{
-				new Change { Action = ChangeAction.Update, Payload = Serialize(GetUpdate()) },
+				new Change
+				{
+					Action = ChangeAction.Update, Payload = Serialize(new PayloadPacket { Updates = GetUpdate() })
+				},
 				new Action<PayloadPacket>(pp =>
 				{
 					Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
@@ -127,10 +130,14 @@ namespace Crash.Changes.Tests.Utils
 
 		private static object[] CreateTransformChange => new object[]
 		{
-			new Change { Action = ChangeAction.Transform, Payload = Serialize(GetTransform()) },
+			new Change
+			{
+				Action = ChangeAction.Transform,
+				Payload = Serialize(new PayloadPacket { Transform = GetTransform() })
+			},
 			new Action<PayloadPacket>(pp =>
 			{
-				Assert.That(pp.Transform, Is.Not.EqualTo(CTransform.Unset));
+				Assert.That(pp.Transform, Is.EqualTo(GetTransform()));
 				Assert.That(pp.Data, Is.Empty);
 				Assert.That(pp.Updates, Is.Not.Null.And.Empty);
 			}),
@@ -139,7 +146,11 @@ namespace Crash.Changes.Tests.Utils
 
 		private static object[] CreateDataChange => new object[]
 		{
-			new Change { Action = ChangeAction.Add, Payload = GetPayloadData() }, new Action<PayloadPacket>(pp =>
+			new Change
+			{
+				Action = ChangeAction.Add, Payload = Serialize(new PayloadPacket { Data = GetPayloadData() })
+			},
+			new Action<PayloadPacket>(pp =>
 			{
 				Assert.That(pp.Transform, Is.EqualTo(CTransform.Unset));
 				Assert.That(pp.Data, Is.Not.Null.And.Not.Empty);

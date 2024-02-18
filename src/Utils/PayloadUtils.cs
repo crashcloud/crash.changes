@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 
-using Crash.Changes.Extensions;
 using Crash.Geometry;
 
 #pragma warning disable CS8603 // Possible null reference return.
@@ -68,7 +67,7 @@ namespace Crash.Changes.Utils
 		/// <returns>True on success, false on nulls, invalid change or failure</returns>
 		public static bool TryGetPayloadFromChange(IChange change, out PayloadPacket payload)
 		{
-			if (change?.Payload is null)
+			if (string.IsNullOrEmpty(change?.Payload))
 			{
 				payload = new PayloadPacket();
 				return false;
@@ -76,62 +75,14 @@ namespace Crash.Changes.Utils
 
 			try
 			{
-				if (change.HasFlag(ChangeAction.Add | ChangeAction.Transform | ChangeAction.Update) ||
-				    change.HasFlag(ChangeAction.Add | ChangeAction.Update) ||
-				    change.HasFlag(ChangeAction.Add | ChangeAction.Transform) ||
-				    change.HasFlag(ChangeAction.Transform | ChangeAction.Update))
-				{
-					payload = JsonSerializer.Deserialize<PayloadPacket>(change.Payload);
-					return true;
-				}
-
-				if (change.HasFlag(ChangeAction.Add) && !HasEmptyPayload(change))
-				{
-					payload = new PayloadPacket { Data = change.Payload };
-					return true;
-				}
-
-				if (change.HasFlag(ChangeAction.Transform))
-				{
-					CTransform transform = JsonSerializer.Deserialize<CTransform>(change.Payload);
-					payload = new PayloadPacket { Transform = transform };
-					return true;
-				}
-
-				if (change.HasFlag(ChangeAction.Update))
-				{
-					Dictionary<string, string>? udpdates =
-						JsonSerializer.Deserialize<Dictionary<string, string>>(change.Payload);
-					payload = new PayloadPacket { Updates = udpdates };
-					return true;
-				}
+				payload = JsonSerializer.Deserialize<PayloadPacket>(change.Payload);
+				return true;
 			}
 			catch
 			{
 				payload = new PayloadPacket();
 				return false;
 			}
-
-			payload = new PayloadPacket();
-
-			return HasEmptyPayload(change) &&
-			       HasValidType(change) &&
-			       HasValidAction(change);
-		}
-
-		private static bool HasEmptyPayload(IChange change)
-		{
-			return string.IsNullOrEmpty(change?.Payload);
-		}
-
-		private static bool HasValidType(IChange change)
-		{
-			return !string.IsNullOrEmpty(change?.Type);
-		}
-
-		private static bool HasValidAction(IChange change)
-		{
-			return change?.Action != ChangeAction.None;
 		}
 	}
 }

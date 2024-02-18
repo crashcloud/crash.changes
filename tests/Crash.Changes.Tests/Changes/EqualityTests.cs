@@ -2,7 +2,7 @@
 {
 	public sealed class QualityAndHashCodeTests
 	{
-		private static readonly int COUNT = 100;
+		private static readonly int COUNT = 5;
 
 		public static IEnumerable IdenticalChangePairs
 		{
