@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 
 using Crash.Geometry;
 
@@ -67,18 +68,36 @@ namespace Crash.Changes.Utils
 		/// <returns>True on success, false on nulls, invalid change or failure</returns>
 		public static bool TryGetPayloadFromChange(IChange change, out PayloadPacket payload)
 		{
-			if (string.IsNullOrEmpty(change?.Payload))
-			{
-				payload = new PayloadPacket();
-				return false;
-			}
+			payload = new PayloadPacket();
+			if (string.IsNullOrEmpty(change?.Payload)) return false;
 
 			try
 			{
-				payload = JsonSerializer.Deserialize<PayloadPacket>(change.Payload);
+				var jsonDocument = JsonDocument.Parse(change.Payload);
+				if (jsonDocument.RootElement.TryGetProperty("Data", out JsonElement dataElement))
+				{
+					payload.Data = dataElement.GetString();
+				}
+
+				if (jsonDocument.RootElement.TryGetProperty("Transform", out JsonElement transformElement))
+				{
+					var raw = transformElement.GetRawText();
+					var transform = JsonSerializer.Deserialize<CTransform>(raw);
+
+					payload.Transform = transform;
+				}
+
+				if (jsonDocument.RootElement.TryGetProperty("Updates", out JsonElement updatesElement))
+				{
+					var raw = updatesElement.GetRawText();
+					var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(raw);
+
+					payload.Updates = dict;
+				}
+
 				return true;
 			}
-			catch
+			catch (Exception ex)
 			{
 				payload = new PayloadPacket();
 				return false;
