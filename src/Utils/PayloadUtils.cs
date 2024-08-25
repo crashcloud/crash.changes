@@ -68,40 +68,97 @@ namespace Crash.Changes.Utils
 		/// <returns>True on success, false on nulls, invalid change or failure</returns>
 		public static bool TryGetPayloadFromChange(IChange change, out PayloadPacket payload)
 		{
-			payload = new PayloadPacket();
-			if (string.IsNullOrEmpty(change?.Payload)) return false;
-
-			try
-			{
-				var jsonDocument = JsonDocument.Parse(change.Payload);
-				if (jsonDocument.RootElement.TryGetProperty("Data", out JsonElement dataElement))
-				{
-					payload.Data = dataElement.GetString();
-				}
-
-				if (jsonDocument.RootElement.TryGetProperty("Transform", out JsonElement transformElement))
-				{
-					var raw = transformElement.GetRawText();
-					var transform = JsonSerializer.Deserialize<CTransform>(raw);
-
-					payload.Transform = transform;
-				}
-
-				if (jsonDocument.RootElement.TryGetProperty("Updates", out JsonElement updatesElement))
-				{
-					var raw = updatesElement.GetRawText();
-					var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(raw);
-
-					payload.Updates = dict;
-				}
-
-				return true;
-			}
-			catch (Exception ex)
+			if (string.IsNullOrEmpty(change?.Payload))
 			{
 				payload = new PayloadPacket();
 				return false;
 			}
+
+			payload = new PayloadPacket();
+			var parts = TryGetPayloadParts(change.Payload, out string data, out CTransform transform, out Dictionary<string, string> updates);
+			if (parts != PayloadParts.All) return false;
+
+			payload = new PayloadPacket { Data = data, Transform = transform, Updates = updates };
+			return true;
 		}
+
+		/// <summary>Returns all of the parts of a payload</summary>
+		/// <param name="payload">A string chunk of data, likely from a change</param>
+		/// <param name="data">A string chunk of data</param>
+		/// <param name="transform"></param>
+		/// <param name="updates"></param>
+		/// <returns></returns>
+		public static PayloadParts TryGetPayloadParts(string payload, out string data, out CTransform transform, out Dictionary<string, string> updates)
+		{
+			data = string.Empty;
+			transform = CTransform.Unset;
+			updates = new();
+			if (string.IsNullOrEmpty(payload)) return PayloadParts.None;
+
+			PayloadParts result = PayloadParts.None;
+			try
+			{
+				var jsonDocument = JsonDocument.Parse(payload);
+				if (jsonDocument is null) return PayloadParts.None;
+
+				try
+				{
+					if (jsonDocument.RootElement.TryGetProperty("Data", out JsonElement dataElement))
+					{
+						data = dataElement.GetString() ?? string.Empty;
+						result |= PayloadParts.Data;
+					}
+				}
+				catch
+				{
+				}
+
+				try
+				{
+					if (jsonDocument.RootElement.TryGetProperty("Transform", out JsonElement transformElement))
+					{
+						var raw = transformElement.GetRawText();
+						transform = JsonSerializer.Deserialize<CTransform>(raw);
+						result |= PayloadParts.Transform;
+					}
+				}
+				catch
+				{
+				}
+
+				try
+				{
+					if (jsonDocument.RootElement.TryGetProperty("Updates", out JsonElement updatesElement))
+					{
+						// if (updatesElement.ValueKind != JsonValueKind.Array)
+						var raw = updatesElement.GetRawText();
+						var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(raw);
+
+						updates = dict ?? new();
+						result |= PayloadParts.Updates;
+					}
+				}
+				catch
+				{
+					updates = new();
+				}
+			}
+			catch (Exception ex)
+			{
+
+			}
+
+			return result;
+		}
+	}
+
+	[Flags]
+	public enum PayloadParts
+	{
+		None = 0,
+		Data = 1 << 1,
+		Transform = 1 << 2,
+		Updates = 1 << 3,
+		All = Data | Transform | Updates
 	}
 }
