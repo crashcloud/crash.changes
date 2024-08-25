@@ -24,7 +24,15 @@
 		/// <summary>Tests for equality of two changes</summary>
 		public bool Equals(Change? other)
 		{
-			return other?.GetHashCode() == GetHashCode();
+			if (other is null) return false;
+
+			if (!Id.Equals(other.Id)) return false;
+			if (!Action.Equals(other.Action)) return false;
+			if (!string.Equals(Type, other.Type, StringComparison.OrdinalIgnoreCase) != true) return false;
+			if (!string.Equals(Owner, other.Owner, StringComparison.OrdinalIgnoreCase) != true) return false;
+			if (!string.Equals(Payload, other.Payload, StringComparison.Ordinal) != true) return false;
+
+			return true;
 		}
 
 		/// <inheritdoc />
