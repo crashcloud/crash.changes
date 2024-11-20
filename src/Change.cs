@@ -42,10 +42,7 @@
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object? obj)
-		{
-			return obj?.GetHashCode() == GetHashCode();
-		}
+		public override bool Equals(object? obj) => obj is Change change && Equals(change);
 
 
 		#region Constructors
